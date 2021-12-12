@@ -1,5 +1,5 @@
 {
-  "name": "vuexy-admin-template",
+  "name": "sonik-stock",
   "version": "6.5.0",
   "scripts": {
     "ng": "ng",
@@ -10,6 +10,7 @@
     "build-stats": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --stats-json",
     "build:prod": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --prod",
     "build:prod-stats": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --prod --stats-json",
+    "deploy": "npm run build:prod && firebase deploy",
     "bundle-analyzer": "webpack-bundle-analyzer dist/vuexy/stats.json",
     "test": "ng test",
     "lint": "ng lint",
@@ -22,6 +23,7 @@
     "@angular/common": "11.2.1",
     "@angular/compiler": "11.2.1",
     "@angular/core": "11.2.1",
+    "@angular/fire": "^6.1.5",
     "@angular/flex-layout": "11.0.0-beta.33",
     "@angular/forms": "11.2.1",
     "@angular/google-maps": "11.2.1",
@@ -76,7 +78,8 @@
     "rxjs": "6.6.3",
     "sweetalert2": "9.17.2",
     "tslib": "2.1.0",
-    "zone.js": "0.11.4"
+    "zone.js": "0.11.4",
+    "firebase": "^7.0 || ^8.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.1102.1",
@@ -100,6 +103,13 @@
     "ts-node": "9.1.1",
     "tslint": "6.1.3",
     "typescript": "4.1.5",
-    "webpack-bundle-analyzer": "4.4.0"
+    "webpack-bundle-analyzer": "4.4.0",
+    "@angular-devkit/architect": ">= 0.900 < 0.1300",
+    "firebase-tools": "^8.0.0 || ^9.0.0",
+    "fuzzy": "^0.1.3",
+    "inquirer": "^6.2.2",
+    "inquirer-autocomplete-prompt": "^1.0.1",
+    "open": "^7.0.3",
+    "jsonc-parser": "^3.0.0"
   }
 }

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sonik-shop": {
+      "hosting": {
+        "vuexy": [
+          "sonik-shop"
+        ]
+      }
+    }
+  }
+}
