@@ -1,3 +1,4 @@
+import { Url } from "url";
 import { Role } from "../types";
 
 export default interface User {
@@ -5,4 +6,5 @@ export default interface User {
     phoneNumber: string
     email?: string
     role: Role
+    avatar?: Url
 }
