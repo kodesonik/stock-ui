@@ -11,12 +11,16 @@ import { HomeComponent } from './home.component'
 
 const routes = [
   {
-    path: 'sample',
-    component: SampleComponent
-  },
-  {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'invoice',
+    loadChildren: () => import('./invoice/invoice.module').then(m => m.InvoiceModule)
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   }
 ]
 

@@ -32,7 +32,7 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/pages/authentication/login-v2',
+    redirectTo: '/pages/authentication/login',
     pathMatch: 'full'
   },
   {
