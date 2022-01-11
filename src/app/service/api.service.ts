@@ -12,7 +12,7 @@ export class ApiService {
    *
    * @param {AngularFirestore} afs
    */
-  constructor(private afs: AngularFirestore) {}
+  constructor(private afs: AngularFirestore, private http: HttpClient) {}
 
   /**
    * Get all users
@@ -42,8 +42,12 @@ export class ApiService {
   }
 
   softDelete(path: string, id: string) {
-      const deletedAt = firebase.firestore.FieldValue.serverTimestamp()
+    const deletedAt = firebase.firestore.FieldValue.serverTimestamp()
     return this.afs.collection(path).doc(id).update({ deletedAt })
-}
+  }
+
+  post(path, data) {
+    this.http.post(environment.apiUrl+ path, data)
+  }
 
 }

@@ -1,8 +1,8 @@
-<div class="slideout-content">
+<div class="slideout-content" *ngIf="authUser">
   <!-- Modal to add new user starts-->
   <div class="modalsd modal-slide-in sdfade new-user-modal" id="modals-slide-in">
     <div class="modal-dialog">
-      <form class="add-new-user modal-content pt-0" (ngSubmit)="(newUserForm.form.valid)" #newUserForm="ngForm">
+      <form class="add-new-user modal-content pt-0" (ngSubmit)="(newShopForm.form.valid)" #newShopForm="ngForm">
         <button
           type="button"
           class="close"
@@ -13,11 +13,55 @@
           ×
         </button>
         <div class="modal-header mb-1">
-          <h5 class="modal-title" id="exampleModalLabel">New User</h5>
+          <h5 class="modal-title" id="exampleModalLabel">New Shop</h5>
         </div>
         <div class="modal-body flex-grow-1">
           <div class="form-group">
-            <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
+            <label class="form-label" for="basic-icon-default-fullname">Nom de la boutique</label>
+            <input
+              type="text"
+              class="form-control dt-full-name"
+              id="basic-icon-default-fullname"
+              placeholder="Nom"
+              name="user-fullname"
+              [(ngModel)]="shopName"
+              [class.error]="newShopForm.submitted && FNameRef.invalid"
+              #FNameRef="ngModel"
+              required
+              aria-label="nom"
+              aria-describedby="basic-icon-default-fullname2"
+            />
+            <span *ngIf="newShopForm.submitted && FNameRef.invalid" class="invalid-form">
+              <small class="form-text text-danger" *ngIf="FNameRef.errors.required">This field is required!</small>
+            </span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="basic-icon-default-fullname">Adresse de la boutique</label>
+            <input
+              type="text"
+              class="form-control dt-full-name"
+              id="basic-icon-default-fullname"
+              placeholder="Adresse"
+              name="user-fullname"
+              [(ngModel)]="shopAddress"
+              [class.error]="newShopForm.submitted && FNameRef.invalid"
+              #FShopAdrresRef="ngModel"
+              required
+              aria-label="nom"
+              aria-describedby="basic-icon-default-fullname2"
+            />
+            <span *ngIf="newShopForm.submitted && FShopAdrresRef.invalid" class="invalid-form">
+              <small class="form-text text-danger" *ngIf="FShopAdrresRef.errors.required">This field is required!</small>
+            </span>
+          </div>
+          <!-- <div class="form-group">
+            <label class="form-label" for="user-role">User Role</label>
+            <select   [(ngModel)]="ownerId" name="user-role" #FRoleRef="ngModel" id="user-role" class="form-control">
+              <option *ngFor="let owner of owners" [value]="owner.id">{{ owner.name }}</option>
+            </select>
+          </div> -->
+          <div class="form-group" *ngIf="authUser.role === 'admin' || authUser.role === 'super'">
+            <label class="form-label" for="basic-icon-default-fullname">Nom complet</label>
             <input
               type="text"
               class="form-control dt-full-name"
@@ -25,18 +69,18 @@
               placeholder="Nom"
               name="user-fullname"
               [(ngModel)]="name"
-              [class.error]="newUserForm.submitted && FNameRef.invalid"
+              [class.error]="newShopForm.submitted && FNameRef.invalid"
               #FNameRef="ngModel"
               required
               aria-label="nom"
               aria-describedby="basic-icon-default-fullname2"
             />
-            <span *ngIf="newUserForm.submitted && FNameRef.invalid" class="invalid-form">
+            <span *ngIf="newShopForm.submitted && FNameRef.invalid" class="invalid-form">
               <small class="form-text text-danger" *ngIf="FNameRef.errors.required">This field is required!</small>
             </span>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="basic-icon-default-uname">Username</label>
+          <div class="form-group" *ngIf="authUser.role === 'admin' || authUser.role === 'super'">
+            <label class="form-label" for="basic-icon-default-uname">Contact</label>
             <input
               type="text"
               id="basic-icon-default-uname"
@@ -46,15 +90,15 @@
               aria-describedby="basic-icon-default-uname2"
               name="user-name"
               [(ngModel)]="phoneNumber"
-              [class.error]="newUserForm.submitted && FPhoneNumberRef.invalid"
+              [class.error]="newShopForm.submitted && FPhoneNumberRef.invalid"
               #FPhoneNumberRef="ngModel"
               required
             />
-            <span *ngIf="newUserForm.submitted && FPhoneNumberRef.invalid" class="invalid-form">
+            <span *ngIf="newShopForm.submitted && FPhoneNumberRef.invalid" class="invalid-form">
               <small class="form-text text-danger" *ngIf="FUserNameRef.errors.required">This field is required!</small>
             </span>
           </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="authUser.role === 'admin' || authUser.role === 'super'">
             <label class="form-label" for="basic-icon-default-email">Email</label>
             <input
               type="text"
@@ -65,34 +109,18 @@
               aria-describedby="basic-icon-default-email2"
               name="user-email"
               [(ngModel)]="email"
-              [class.error]="newUserForm.submitted && FEmailRef.invalid"
+              [class.error]="newShopForm.submitted && FEmailRef.invalid"
               #FEmailRef="ngModel"
               required
             />
-            <span *ngIf="newUserForm.submitted && FEmailRef.invalid" class="invalid-form">
+            <span *ngIf="newShopForm.submitted && FEmailRef.invalid" class="invalid-form">
               <small class="form-text text-danger" *ngIf="FEmailRef.errors.required">This field is required!</small>
             </span>
             <small class="form-text text-muted"> You can use letters, numbers & periods </small>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="user-role">User Role</label>
-            <select   [(ngModel)]="role" name="user-role" #FRoleRef="ngModel" id="user-role" class="form-control">
-              <option value="admin">Admin</option>
-              <option value="gérant">Gérant</option>
-              <option value="magasinier">Magasinier</option>
-              <option value="vendeur">Vendeur</option>
-            </select>
-          </div>
-          <div class="form-group mb-2">
-            <label class="form-label" for="shop-id">Entreprise</label>
-            <select id="shop-id" class="form-control">
-              <option value="basic">Basic</option>
-              <option value="enterprise">Enterprise</option>
-              <option value="company">Company</option>
-              <option value="team">Team</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary mr-1" (click)="submit(newUserForm)" rippleEffect>Submit</button>
+         
+         
+          <button type="submit" class="btn btn-primary mr-1" (click)="submit(newShopForm)" rippleEffect>Submit</button>
           <button
             type="reset"
             class="btn btn-outline-secondary"

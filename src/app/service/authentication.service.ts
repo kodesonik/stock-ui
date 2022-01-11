@@ -61,6 +61,7 @@ export class AuthenticationService {
           console.log(userDoc)
           if (userDoc.exists) {
             const data = userDoc.data() as User
+            data.id  = userDoc.id
             // const id = userDoc.id
             this.currentUserSubject.next(data);
             localStorage.setItem('currentUser', JSON.stringify(data))

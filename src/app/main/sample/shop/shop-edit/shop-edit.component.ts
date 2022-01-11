@@ -85,7 +85,10 @@ export class ShopEditComponent implements OnInit {
       this.rows.map(row => {
         if (row.id == this.urlLastValue) {
           this.currentRow = row;
-          this.avatarImage = this.currentRow.avatar;
+          if(this.avatarImage != this.currentRow.logo)  {
+            // uplaod service
+            this.avatarImage = this.currentRow.logo;
+          }
           this.tempRow = cloneDeep(row);
         }
       });
@@ -93,6 +96,6 @@ export class ShopEditComponent implements OnInit {
   }
 
   submit() {
-    this._shopEditService.editUser(this.urlLastValue, this.currentRow)
+    this._shopEditService.editShop(this.urlLastValue, this.currentRow)
   }
 }

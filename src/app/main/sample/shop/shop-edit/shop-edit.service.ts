@@ -42,7 +42,7 @@ export class ShopEditService implements Resolve<any> {
    */
   getApiData(): Promise<any[]> {
     return new Promise((resolve, reject) => {
-      this.api.getAll('users' ).subscribe((response: any) => {
+      this.api.getAll('shops' ).subscribe((response: any) => {
         this.apiData = response;
         this.onDataChanged.next(this.apiData);
         resolve(this.apiData);
@@ -50,7 +50,7 @@ export class ShopEditService implements Resolve<any> {
     });
   }
 
-  editUser(id: string, data: Shop) {
-    this.api.edit('users', id, data)
+  editShop(id: string, data: Shop) {
+    this.api.edit('shops', id, data)
   }
 }

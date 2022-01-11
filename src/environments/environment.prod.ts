@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   hmr: false,
-  apiUrl: 'https://ks-stock-api.herokuapp.com/',
+  apiUrl: 'https://ks-stock-api.herokuapp.com/api/',
    firebase: {
     projectId: 'sonik-shop',
     appId: '1:261615791181:web:84b91c1187be52a9a64004',

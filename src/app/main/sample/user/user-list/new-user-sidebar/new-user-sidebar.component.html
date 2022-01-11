@@ -13,11 +13,11 @@
           ×
         </button>
         <div class="modal-header mb-1">
-          <h5 class="modal-title" id="exampleModalLabel">New User</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Nouvel Utilisateur</h5>
         </div>
         <div class="modal-body flex-grow-1">
           <div class="form-group">
-            <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
+            <label class="form-label" for="basic-icon-default-fullname">Nom complet</label>
             <input
               type="text"
               class="form-control dt-full-name"
@@ -36,7 +36,7 @@
             </span>
           </div>
           <div class="form-group">
-            <label class="form-label" for="basic-icon-default-uname">Username</label>
+            <label class="form-label" for="basic-icon-default-uname">Contact</label>
             <input
               type="text"
               id="basic-icon-default-uname"
@@ -54,7 +54,7 @@
               <small class="form-text text-danger" *ngIf="FUserNameRef.errors.required">This field is required!</small>
             </span>
           </div>
-          <div class="form-group">
+          <div class="form-group"  *ngIf="role === 'admin'">
             <label class="form-label" for="basic-icon-default-email">Email</label>
             <input
               type="text"
@@ -83,13 +83,10 @@
               <option value="vendeur">Vendeur</option>
             </select>
           </div>
-          <div class="form-group mb-2">
-            <label class="form-label" for="shop-id">Entreprise</label>
-            <select id="shop-id" class="form-control">
-              <option value="basic">Basic</option>
-              <option value="enterprise">Enterprise</option>
-              <option value="company">Company</option>
-              <option value="team">Team</option>
+          <div class="form-group mb-2" *ngIf="role != 'admin'">
+            <label class="form-label" for="shop-id">Boutique</label>
+            <select id="shop-id" [(ngModel)]="shopId" name="shop-id" class="form-control">
+              <option   *ngFor="let shop of shops" [value]="shop.id">{{ shop.name }}</option>
             </select>
           </div>
           <button type="submit" class="btn btn-primary mr-1" (click)="submit(newUserForm)" rippleEffect>Submit</button>

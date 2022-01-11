@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   hmr: false,
-  apiUrl: 'http://localhost:4000',
+  apiUrl: 'http://localhost:4000/api/',
   firebase: {
    projectId: 'sonik-shop',
    appId: '1:261615791181:web:84b91c1187be52a9a64004',

@@ -39,7 +39,7 @@ const routes: Routes = [
     component: ShopViewComponent,
     resolve: {
       data: ShopViewService,
-      InvoiceListService
+      // InvoiceListService
     },
     data: { path: 'view/:id', animation: 'ShopViewComponent' }
   },
@@ -49,7 +49,7 @@ const routes: Routes = [
     resolve: {
       ues: ShopEditService
     },
-    data: { animation: 'UserEditComponent' }
+    data: { animation: 'ShopEditComponent' }
   },
   {
     path: 'user-view',

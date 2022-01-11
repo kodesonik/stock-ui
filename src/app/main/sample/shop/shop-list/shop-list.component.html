@@ -54,7 +54,7 @@
               /></label>
               <button class="btn btn-primary ml-1" rippleEffect (click)="toggleSidebar('new-user-sidebar')">
                 <i data-feather="plus" class="d-sm-none d-inline-block mr-0 mr-sm-1"></i
-                ><span class="d-none d-sm-inline-block">Add New User</span>
+                ><span class="d-none d-sm-inline-block">Add New Shop</span>
               </button>
             </div>
           </div>
@@ -69,14 +69,14 @@
           [footerHeight]="50"
           [scrollbarH]="true"
         >
-          <ngx-datatable-column name="User" prop="fullName" [width]="200">
+          <ngx-datatable-column name="Nom" prop="fullName" [width]="200">
             <ng-template let-row="row" let-name="value" ngx-datatable-cell-template>
               <div class="d-flex align-items-center">
                 <!-- <div *ngIf="row.avatar.length > 0; else customAvatar"> -->
-                <div *ngIf="row.avatar; else customAvatar">
+                <div *ngIf="row.logo; else customAvatar">
                   <img
                     class="rounded-circle mr-1"
-                    src="{{ row.avatar }}"
+                    src="{{ row.logo }}"
                     height="32"
                     width="32"
                     alt="datatable-avatar"
@@ -95,16 +95,16 @@
                   </div>
                 </ng-template>
                 <div class="cell-line-height">
-                  <a routerLink="/apps/user/user-view/{{ row.id }}" class="font-medium-1 d-block"
+                  <a routerLink="/shop/shop-view/{{ row.id }}" class="font-medium-1 d-block"
                     ><span class="font-weight-bold">{{ row.name }}</span></a
                   >
-                  <span class="text-muted font-small-2"> @{{ row.name }}</span>
+                  <!-- <span class="text-muted font-small-2"> {{ row.address }}</span> -->
                 </div>
               </div>
             </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Email" prop="email" [width]="250"></ngx-datatable-column>
-          <ngx-datatable-column name="Role" prop="role" [width]="50">
+          <ngx-datatable-column name="Adresse" prop="address" [width]="250"></ngx-datatable-column>
+          <!-- <ngx-datatable-column name="Role" prop="role" [width]="50">
             <ng-template let-role="value" ngx-datatable-cell-template>
               <div>
                 <i
@@ -120,8 +120,8 @@
                 {{ role }}
               </div>
             </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Plan" prop="currentPlan" [width]="100"></ngx-datatable-column>
+          </ngx-datatable-column> -->
+          <!-- <ngx-datatable-column name="Plan" prop="currentPlan" [width]="100"></ngx-datatable-column>
           <ngx-datatable-column name="Status" prop="status" [width]="50">
             <ng-template let-status="value" ngx-datatable-cell-template>
               <div
@@ -135,7 +135,7 @@
                 {{ status }}
               </div>
             </ng-template>
-          </ngx-datatable-column>
+          </ngx-datatable-column> -->
           <ngx-datatable-column name="Actions" [width]="40" [sortable]="false">
             <ng-template ngx-datatable-cell-template let-row="row">
               <div ngbDropdown container="body">
@@ -143,9 +143,9 @@
                   <span [data-feather]="'more-vertical'" [class]="'cursor-pointer'"></span>
                 </button>
                 <div ngbDropdownMenu>
-                  <a routerLink="/user/user-view/{{ row.id }}" ngbDropdownItem
+                  <a routerLink="/shop/shop-view/{{ row.id }}" ngbDropdownItem
                     ><span [data-feather]="'file-text'" [size]="16" [class]="'mr-50'"></span> Details</a
-                  ><a routerLink="/user/user-edit/{{ row.id }}" ngbDropdownItem
+                  ><a routerLink="/shop/shop-edit/{{ row.id }}" ngbDropdownItem
                     ><span [data-feather]="'edit'" [size]="16" [class]="'mr-50'"></span> Edit</a
                   ><a (click)="onDelete(row.id)" ngbDropdownItem
                     ><span [data-feather]="'trash'" [size]="16" [class]="'mr-50'"></span> Delete</a
@@ -166,7 +166,7 @@
     name="new-user-sidebar"
     overlayClass="modal-backdrop"
   >
-    <app-new-user-sidebar></app-new-user-sidebar>
+    <app-new-shop-sidebar></app-new-shop-sidebar>
   </core-sidebar>
   <!--/ New User Sidebar -->
 </div>

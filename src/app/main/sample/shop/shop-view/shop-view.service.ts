@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ApiService } from 'app/service/api.service';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -15,7 +16,7 @@ export class ShopViewService implements Resolve<any> {
    *
    * @param {HttpClient} _httpClient
    */
-  constructor(private _httpClient: HttpClient) {
+  constructor(private api: ApiService) {
     // Set the defaults
     this.onDataChanged = new BehaviorSubject({});
   }
@@ -28,7 +29,7 @@ export class ShopViewService implements Resolve<any> {
    * @returns {Observable<any> | Promise<any> | any}
    */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    let currentId = Number(route.paramMap.get('id'));
+    let currentId = route.paramMap.get('id');
     return new Promise<void>((resolve, reject) => {
       Promise.all([this.getApiData(currentId)]).then(() => {
         resolve();
@@ -39,12 +40,11 @@ export class ShopViewService implements Resolve<any> {
   /**
    * Get rows
    */
-  getApiData(id: number): Promise<any[]> {
-    const url = `api/users-data/${id}`;
-
+  getApiData(id: string): Promise<any[]> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get(url).subscribe((response: any) => {
+      this.api.getById('shops', id).subscribe((response: any) => {
         this.rows = response;
+        this.rows.id = id;
         this.onDataChanged.next(this.rows);
         resolve(this.rows);
       }, reject);

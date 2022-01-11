@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireStorageModule,
     RouterModule.forRoot(appRoutes, {
       scrollPositionRestoration: 'enabled', // Add options right here
